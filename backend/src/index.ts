@@ -6,7 +6,7 @@ import cors from '@fastify/cors'
 const server = fastify()
 
 server.register(cors), {
-  origin: 'http://localhost:3000',
+  origin: 'https://short-kr-8pb6.vercel.app/',
   methods: ['GET', 'POST']
 }
 server.register(routes, { prefix: '/api/v1/' })
