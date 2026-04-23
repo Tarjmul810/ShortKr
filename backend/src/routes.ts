@@ -33,7 +33,7 @@ export default async function routes(fastify: FastifyInstance) {
     }
   });
 
-  fastify.get("/url/:shortCode", async (request, reply) => {
+  fastify.get("/:shortCode", async (request, reply) => {
     try {
       const { shortCode } = request.params as { shortCode: string };
 
