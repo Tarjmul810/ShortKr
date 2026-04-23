@@ -3,20 +3,22 @@ import routes from './routes'
 import { job } from './job'
 import cors from '@fastify/cors'
 
-const server = fastify()
+const app = fastify()
 
-server.register(cors), {
+app.register(cors), {
   origin: 'https://short-kr-8pb6.vercel.app/',
   methods: ['GET', 'POST']
 }
-server.register(routes, { prefix: '/api/v1/' })
+app.register(routes, { prefix: '/api/v1/' })
 
 const start = async () => {
   try {
-    await server.listen({
+    await app.listen({
       port: Number(process.env.PORT) || 3001,
       host: '0.0.0.0'
     });
+
+    console.log(`Server listening on `, app.server.address());
 
     job.start();
   } catch (err) {

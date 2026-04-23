@@ -23,8 +23,9 @@ export const saveUrl = async (url: string) => {
 };
 
 export const findUrl = async (shortCode: string) => {
+  console.log(shortCode);  
   const response = await prisma.url.findUnique({ where: { short: shortCode } });
-  console.log(response);
+  console.log("error", response);
   if (!response) throw new Error("URL not found");
 
   const expired = response.expiredAt.getTime() - Date.now();

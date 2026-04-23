@@ -8,6 +8,6 @@ export const job =  cron.schedule("*/15 * * * * *", async () => {
 
     await updateClick(keys, values)
 
-    if(keys.length > 0) await redis.del(keys)
+    if(keys.length > 0) await redis.del(...keys)
     
 });

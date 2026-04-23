@@ -37,8 +37,9 @@ export default async function routes(fastify: FastifyInstance) {
     try {
       const { shortCode } = request.params as { shortCode: string };
 
+      console.log(shortCode);
       const response = await getUrl(shortCode);
-
+      console.log(response);
       reply.status(302).redirect(response);
     } catch (error) {
       if (error === "URL not found")
