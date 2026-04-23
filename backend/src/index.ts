@@ -11,13 +11,18 @@ server.register(cors), {
 }
 server.register(routes, { prefix: '/api/v1/' })
 
-server.listen({ port: 8080 }, (err, address) => {
-  if (err) {
-    console.error(err)
-    process.exit(1)
-  }
+const start = async () => {
+  try {
+    await server.listen({
+      port: Number(process.env.PORT) || 3001,
+      host: '0.0.0.0'
+    });
 
-  job.start()
-  
-  console.log(`Server listening at ${address}`)
-})
+    job.start();
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+};
+
+start();
