@@ -25,7 +25,7 @@ export const getUrl = async (shortCode: string) => {
 
     const response = await findUrl(shortCode);
 
-    await redis.set(shortCode, response.url, "EX", 24 * 60 * 60);
+    await redis.set(shortCode, response.url, {ex: 60*60*24} );
     await redis.incr(`clicks:${shortCode}`);
     return response.url
   } catch (error) {
